@@ -3,13 +3,15 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { useLogin } from "../hook/useAuth";
 import { useState } from "react";
-import router from "next/router";
+import { useRouter } from "next/navigation";
+
 interface LoginFormData {
   email: string;
   password: string;
 }
 
 export default function Login() {
+  const router = useRouter();
   const { register, handleSubmit } = useForm<LoginFormData>();
   const loginMutation = useLogin();
   const [message, setMessage] = useState("");

@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useRegister } from "../hook/useAuth";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import router from "next/router";
 interface RegisterFormData {
   name: string;
   email: string;
@@ -10,14 +12,15 @@ interface RegisterFormData {
   password: string;
 }
 export default function Register() {
+  const router = useRouter();
   const { register, handleSubmit } = useForm<RegisterFormData>();
   const registerMutation = useRegister();
   const [message, setMessage] = useState("");
-
   const onSubmit = async (data: RegisterFormData) => {
     try {
       const res = await registerMutation.mutateAsync(data);
       setMessage(res.message || "Register success!");
+      router.push("/login");
     } catch (err: any) {
       setMessage(err.response?.data?.message || "Register failed");
     }
