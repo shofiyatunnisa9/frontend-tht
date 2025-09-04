@@ -1,7 +1,7 @@
 "use client";
 import { useForm } from "react-hook-form";
 import { useRouter, useParams } from "next/navigation";
-import { useUpdateProduct } from "@/app/hook/useProducts";
+import { useProduct, useUpdateProduct } from "@/app/hook/useProducts";
 import Navbar from "@/app/componnents/navbar";
 import React from "react";
 
